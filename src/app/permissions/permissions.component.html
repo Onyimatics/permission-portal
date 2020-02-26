@@ -39,19 +39,19 @@
         <th style="width: 8em;">Delete</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-Permissions>
+    <ng-template pTemplate="body" let-permissions>
       <tr>
-        <td>{{ Permissions.enabled }}</td>
-        <td>{{ Permissions.permissionCode }}</td>
-        <td>{{ Permissions.permissionGrouping }}</td>
-        <td>{{ Permissions.permissionName }}</td>
+        <td>{{ permissions.enabled }}</td>
+        <td>{{ permissions.permissionCode }}</td>
+        <td>{{ permissions.permissionGrouping }}</td>
+        <td>{{ permissions.permissionName }}</td>
         <td>
           <button
             type="button"
             pButton
             icon="fa fa-edit"
             label="Edit"
-            (click)="showModal(Permissions)"
+            (click)="showModal(permissions)"
           ></button>
         </td>
         <td>
@@ -61,7 +61,7 @@
             pButton
             icon="fa fa-times"
             label="Delete"
-            (click)="confirm(Permissions.permissionCode)"
+            (click)="confirm(permissions.permissionCode)"
           ></button>
         </td>
         <!-- <td><i class="pi pi-trash" style="font-size: 3em"></i></td> -->

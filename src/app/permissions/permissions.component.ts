@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { PermissionService } from "../services/permissions.services";
-import { Permissions } from "../models/permissions";
+import { Permission } from "../models/permissions";
 import { AuthService } from "../services/auth.services";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class PermissionsComponent implements OnInit {
   readonly subscriptions = new Subscription();
-  permissions: Permissions[];
+  permissions: Permission[];
   // permission: Permissions;
   private _displayModal: boolean;
   get displayModal(): boolean {
@@ -27,10 +27,8 @@ export class PermissionsComponent implements OnInit {
     this._displayModal = value;
   }
 
-  // permissionCode: number;
   permissionForm: FormGroup;
-  selectedPermission: Permissions;
-  // selectedValue: string = 'val1';
+  selectedPermission: Permission;
 
   constructor(
     private readonly _permissionService: PermissionService,
@@ -49,7 +47,7 @@ export class PermissionsComponent implements OnInit {
     this.subscriptions.add(subscription);
   }
 
-  showModal(permission: Permissions | undefined | null = null) {
+  showModal(permission: Permission | undefined | null = null) {
     console.log(this.displayModal);
     if (permission) {
       // const subscription = this._permissionService.getPermission(permission.permissionCode)
@@ -85,7 +83,7 @@ export class PermissionsComponent implements OnInit {
     });
   }
 
-  appendPermission(permission: Permissions) {
+  appendPermission(permission: Permission) {
     if (
       this.permissions &&
       permission &&

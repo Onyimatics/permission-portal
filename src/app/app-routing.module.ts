@@ -5,11 +5,15 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { CreatePermissionsComponent } from './create-permissions/create-permissions.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
+import { NoAuthGuard } from './guard/no-auth.guard';
 
 
 const routes: Routes = [
   { path:  '', component:  LoginComponent },
-  { path:  'login', component:  LoginComponent },
+  { path:  'login',
+   component:  LoginComponent,
+   canActivate: [NoAuthGuard]
+   },
   {
     path:  'get-permissions',
     component:  PermissionsComponent,

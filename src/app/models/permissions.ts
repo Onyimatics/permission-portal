@@ -1,4 +1,4 @@
-export interface Permissions {
+export interface Permission {
        "enabled": boolean; 
        "permissionGrouping": string; 
        "permissionCode": number;

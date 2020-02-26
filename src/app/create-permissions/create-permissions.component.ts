@@ -18,7 +18,7 @@ import { HttpClient } from "@angular/common/http";
 import { PermissionService } from "../services/permissions.services";
 import { interval, Subscription, of, Observable } from "rxjs";
 import { mergeMap, map, tap, filter } from "rxjs/operators";
-import { Permissions } from "../models/permissions";
+import { Permission } from "../models/permissions";
 
 @Component({
   selector: "app-create-permissions",
@@ -30,14 +30,14 @@ export class CreatePermissionsComponent implements OnInit {
   readonly subscriptions = new Subscription();
   // permission: Permissions;
 
-  _permission: Permissions;
+  _permission: Permission;
 
-  get permission(): Permissions {
+  get permission(): Permission {
     return this._permission;
   }
 
   @Input()
-  set permission(value: Permissions) {
+  set permission(value: Permission) {
     this._permission = value;
     this.updateForm();
   }
@@ -45,7 +45,7 @@ export class CreatePermissionsComponent implements OnInit {
   @Input() modalDisplay: boolean;
   @Output() modalDisplayChange = new EventEmitter<boolean>(false);
 
-  @Output() permissionCreated = new EventEmitter<Permissions>();
+  @Output() permissionCreated = new EventEmitter<Permission>();
 
   constructor(
     private fb: FormBuilder,
@@ -70,10 +70,10 @@ export class CreatePermissionsComponent implements OnInit {
     const rawValue = this.permissionForm.getRawValue();
     const existingPermission =
       rawValue.permission ||
-      <Permissions>{
+      <Permission>{
         enabled: false
       };
-    const permission = <Permissions>{
+    const permission = <Permission>{
       ...existingPermission,
       enabled: rawValue.enabled === "true",
       permissionGrouping: rawValue.permissionGrouping,
@@ -88,7 +88,7 @@ export class CreatePermissionsComponent implements OnInit {
     //   });
     // this.receiveModal = false;
 
-    const permission$: Observable<Permissions> = of(permission).pipe(
+    const permission$: Observable<Permission> = of(permission).pipe(
       mergeMap(perm => {
         if (perm.permissionCode) {
           return this.permissionService.editPermission(
@@ -113,7 +113,7 @@ export class CreatePermissionsComponent implements OnInit {
   }
 
   private updateForm() {
-    const perm = this.permission || <Permissions>{};
+    const perm = this.permission || <Permission>{};
     if (this.permissionForm) {
       this.permissionForm.patchValue({
         // perm

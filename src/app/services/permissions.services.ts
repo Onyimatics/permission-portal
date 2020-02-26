@@ -1,23 +1,23 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, interval } from "rxjs";
-import { Permissions } from '../models/permissions';
+import { Permission } from '../models/permissions';
 
 @Injectable({ providedIn: "root" })
 export class PermissionService {
   constructor(private http: HttpClient) {}
 
-  createPermission(permit: Permissions): Observable<Permissions> {
+  createPermission(permit: Permission): Observable<Permission> {
 
     const headers = new HttpHeaders()
     .append('content-type', 'application/json;charset=UTF-8');
 
-    return this.http.post<Permissions>("/aig-uaa/api/permission/createPermission",
+    return this.http.post<Permission>("/aig-uaa/api/permission/createPermission",
     JSON.stringify(permit), {headers: headers});
   }
 
-  getPermissions(): Observable<Permissions[]> {
-    return this.http.get<Permissions[]>("/aig-uaa/api/permission/getAllpermissions")
+  getPermissions(): Observable<Permission[]> {
+    return this.http.get<Permission[]>("/aig-uaa/api/permission/getAllpermissions")
     // return this.http.get<Permissions[]>("assets/permissions.json")
   }
 
@@ -26,11 +26,11 @@ export class PermissionService {
     // return this.http.get<Permissions[]>("assets/permissions.json")
   }
 
-  editPermission(permit: Permissions, permissionCode: number): Observable<Permissions> {
+  editPermission(permit: Permission, permissionCode: number): Observable<Permission> {
     
     const headers = new HttpHeaders()
     .append('content-type', 'application/json;charset=UTF-8');
-    return this.http.put<Permissions>(`aig-uaa/api/permission/updatePermission/${permissionCode}`,
+    return this.http.put<Permission>(`aig-uaa/api/permission/updatePermission/${permissionCode}`,
     JSON.stringify(permit), {headers: headers}
     )
     // return this.http.get<Permissions[]>("assets/permissions.json")
@@ -42,7 +42,6 @@ export class PermissionService {
     return this.http.delete<any>(`/aig-uaa/api/permission/deletePermission/${permissionCode}`,
     {headers: headers}
     )
-    // return this.http.delete<any>("assets/permissions.json")
 
   }
 
