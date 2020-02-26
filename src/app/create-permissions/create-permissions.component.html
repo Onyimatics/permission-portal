@@ -1,0 +1,72 @@
+<p-dialog
+  header="Permission Details"
+  [(visible)]="modalDisplay"
+  [modal]="true"
+  [style]="{ width: '40vw', top: '40px' }"
+  [baseZIndex]="10000"
+  (onHide)="hideModal()"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form
+    class="p-3 bg-faded"
+    [formGroup]="permissionForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-group row">
+      <label for="enabled" class="col-sm-3 col-form-label"> Enabled: </label>
+      <div class="col-sm-9">
+        <p-radioButton
+          name="groupname"
+          value="true"
+          label="Yes"
+          formControlName="enabled"
+        ></p-radioButton
+        >&nbsp;
+        <p-radioButton
+          name="groupname"
+          value="false"
+          label="No"
+          formControlName="enabled"
+        ></p-radioButton>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="permissionGrouping" class="col-sm-3 col-form-label">
+        Permission Grouping:
+      </label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          id="permissionGrouping"
+          pInputText
+          formControlName="permissionGrouping"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="permissionName" class="col-sm-3 col-form-label">
+        Permission Name:
+      </label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          id="permissionGrouping"
+          pInputText
+          formControlName="permissionName"
+        />
+      </div>
+    </div>
+    <p-footer>
+      <button
+        pButton
+        class="ui-button-success"
+        icon=" pi pi-save"
+        label="Save"
+        type="submit"
+        [disabled]="!permissionForm.valid"
+      ></button>
+    </p-footer>
+  </form>
+</p-dialog>
