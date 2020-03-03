@@ -55,9 +55,9 @@ export class CreatePermissionsComponent implements OnInit {
 
   ngOnInit() {
     this.permissionForm = this.fb.group({
-      enabled: [],
-      permissionGrouping: [""],
-      permissionName: [""],
+      enabled: ["", Validators.required],
+      permissionGrouping: ["", Validators.required],
+      permissionName: ["", Validators.required],
       permission: [""]
     });
   }
@@ -79,7 +79,6 @@ export class CreatePermissionsComponent implements OnInit {
       permissionGrouping: rawValue.permissionGrouping,
       permissionName: rawValue.permissionName
     };
-    console.log(permission, rawValue);
 
     // const subscription = this.permissionService
     //   .createPermission(permission)
@@ -120,7 +119,6 @@ export class CreatePermissionsComponent implements OnInit {
         enabled: perm.enabled ? "true" : "false",
         permissionGrouping: perm.permissionGrouping,
         permissionName: perm.permissionName,
-
         permission: perm
       });
     }

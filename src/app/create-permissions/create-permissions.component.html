@@ -8,10 +8,12 @@
   [draggable]="false"
   [resizable]="false"
 >
+<div class="form-group">
   <form
     class="p-3 bg-faded"
     [formGroup]="permissionForm"
     (ngSubmit)="onSubmit()"
+    novalidate
   >
     <div class="form-group row">
       <label for="enabled" class="col-sm-3 col-form-label"> Enabled: </label>
@@ -52,21 +54,24 @@
       <div class="col-sm-9">
         <input
           type="text"
-          id="permissionGrouping"
+          id="permissionName"
           pInputText
           formControlName="permissionName"
         />
       </div>
     </div>
-    <p-footer>
+      <div>
       <button
         pButton
+        id="createPerm"
         class="ui-button-success"
         icon=" pi pi-save"
         label="Save"
         type="submit"
         [disabled]="!permissionForm.valid"
+       
       ></button>
-    </p-footer>
+    </div>
   </form>
+</div>
 </p-dialog>

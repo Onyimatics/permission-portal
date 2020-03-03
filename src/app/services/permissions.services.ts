@@ -18,7 +18,7 @@ export class PermissionService {
 
   getPermissions(): Observable<Permission[]> {
     return this.http.get<Permission[]>("/aig-uaa/api/permission/getAllpermissions")
-    // return this.http.get<Permissions[]>("assets/permissions.json")
+    // return this.http.get<Permission[]>("assets/permissions.json")
   }
 
   getPermission(permissionCode: number): Observable<any> {

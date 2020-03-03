@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../services/auth.services";
 import { interval, Subscription } from "rxjs";
 import { mergeMap, map, tap, filter } from "rxjs/operators";
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private _PermissionService: PermissionService,
     private fb: FormBuilder,
     private router: Router
@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      grant_type: [""],
-      username: [""],
-      password: [""]
+      grant_type: ["", Validators.required],
+      username: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
 
